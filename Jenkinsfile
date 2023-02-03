@@ -8,7 +8,7 @@ pipeline {
 		}
 		stage('build') {
 			steps {
-				mvn clean package
+				mvn package
 			}
 		}
 		stage('junit') {
