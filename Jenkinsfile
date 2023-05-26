@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Git clone') {
             steps {
-                git url: 'https://github.com/virtualram-rgb/game-of-life.git', branch: 'main'
+                git url: 'https://github.com/virtualram-rgb/game-of-life.git', branch: 'master'
             }
         }
         stage ('build') {
