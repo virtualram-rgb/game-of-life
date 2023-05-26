@@ -14,7 +14,7 @@ pipeline {
         stage ('build') {
             steps {
                 withSonarQubeEnv('sonar'){
-                    sh 'mvn install sonar:sonar'
+                    sh 'mvn package sonar:sonar'
                 }
             }
         }
