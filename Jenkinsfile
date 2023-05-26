@@ -6,11 +6,11 @@ pipeline {
                 git url: 'https://github.com/virtualram-rgb/game-of-life.git', branch: 'master'
             }
         }
-        stage ('build') {
-		steps{
-		  sh 'mvn clean'
-		}
-			
+	stage ('clean') {
+		steps {
+		    sh 'mvn clean'
+	}	
+        stage ('build') {	
             steps {
                 withSonarQubeEnv('sonar'){
                     sh 'mvn install sonar:sonar'
