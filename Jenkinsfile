@@ -13,11 +13,6 @@ pipeline {
                 }
             }
         }
-        stage('junit') {
-			steps {
-				junit '**/surefire-reports/*.xml'
-			}
-		}
         stage('exec maven'){
             steps{
                 rtmavenRun (
