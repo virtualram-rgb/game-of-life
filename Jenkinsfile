@@ -12,7 +12,8 @@ pipeline {
                     id: "MAVEN_DEPLOYER" ,
                     serverId: 'jfrog_instance',
                     releaseRepo: 'libs-release',
-                    snapshotRepo: 'libs-snapshot'
+                    snapshotRepo: 'libs-snapshot',
+		    deployArtifacts: 'True'
                 )
             }
         }
