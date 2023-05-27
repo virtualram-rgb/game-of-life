@@ -5,27 +5,7 @@ pipeline {
             steps {
                 git url: 'https://github.com/virtualram-rgb/game-of-life.git', branch: 'master'
             }
-        }
-        stage ('build') {
-            steps {
-                withSonarQubeEnv('SONAR_SELF_HOSTED'){
-                    sh 'mvn package sonar:sonar'
-                }
-            }
-        }
-        stage('exec maven'){
-            steps{
-                rtmavenRun (
-                    timeout(time: 1, unit: 'HOURS') {
-                        waitForQualityGate abortPipeline: true
-                    },
-                    tool: 'mvn_2', // Tool name from Jenkins configuration
-                    pom: 'pom.xml',
-                    goals: 'clean install',
-                    deployerId: "MAVEN_DEPLOYER"
-                )
-            }
-        }
+        }  
         stage('artifactory'){
             steps{
                 rtMavenDeployer (
@@ -36,6 +16,13 @@ pipeline {
                 )
             }
         }
+	stage ('build') {
+            steps {
+                withSonarQubeEnv('SONAR_SELF_HOSTED'){
+                    sh 'mvn package sonar:sonar'
+                }
+            }
+        } 
         stage('Publishtheartifacts'){
             steps{
                 rtPublishBuildInfo (
